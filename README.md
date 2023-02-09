@@ -44,7 +44,7 @@ Web Socket Subscriptions are a way to use Web Sockets to subscribe to data chang
 
 ## Installation
 
-> Note: The installation will be the same as my [trpc repo](https://github.com/emanuelefavero/trpc) apart from the `npm i ws` command which installs the WebSocket library on the server
+> Note: The installation will be the same as my [trpc repo](https://github.com/emanuelefavero/trpc) apart from `npm i ws` and `npm i -D @types/ws` command which installs the WebSocket library on the server
 
 - clone repo and `cd` into it
 - `cd` into `server` and run `npm install`
@@ -75,6 +75,7 @@ OR
 
 - run `npm i @trpc/server cors express zod`
 - **run `npm i ws` to install the WebSocket library**
+- **run `npm i -D @types/ws` to install types for the WebSocket library**
 - run `npm i -D @types/cors @types/express @types/node`
 - nodemon ts-node typescript`
 - setup `typescript` with `tsc --init`
