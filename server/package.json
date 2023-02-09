@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.ts",
+  "scripts": {
+    "dev": "nodemon api.ts",
+    "build": "tsc",
+    "start": "node api.js"
+  },
+  "keywords": [],
+  "author": "Emanuele Favero",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.13.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@trpc/server": "^10.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "zod": "^3.20.5"
+  }
+}
