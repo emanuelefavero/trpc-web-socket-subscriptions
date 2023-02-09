@@ -1,10 +1,20 @@
-# tRPC
+# tRPC Web Socket Subscriptions
 
-This is a cheat sheet repo for tRPC, a library for building typesafe APIs between server and client
+This is a cheat sheet repo for setting up tRPC with [WebSocket Subscriptions](https://trpc.io/docs/subscriptions).
 
-> Note: tRPC main features work with TypeScript
+> Note: tRPC is a library for building typesafe APIs between server and client (tRPC main features work with TypeScript)
+
+## Web Sockets
+
+[Web Sockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) are a protocol for bi-directional, real-time communication between a client (such as a web browser) and a server. They are commonly used to build real-time applications, such as online games, chat applications, and collaborative editing tools.
+
+## Web Socket Subscriptions
+
+Web Socket Subscriptions are a way to use Web Sockets to subscribe to data changes on the server.
 
 ## Installation
+
+> Note: The installation will be the same as my [trpc repo](https://github.com/emanuelefavero/trpc) apart from the `npm i ws` command which installs the WebSocket library
 
 - clone repo and `cd` into it
 - `cd` into `server` and run `npm install`
@@ -28,7 +38,9 @@ OR
 ### Setup server folder
 
 - run `npm i @trpc/server cors express zod`
-- run `npm i -D @types/cors @types/express @types/node nodemon ts-node typescript`
+- **run `npm i ws` to install the WebSocket library**
+- run `npm i -D @types/cors @types/express @types/node`
+- nodemon ts-node typescript`
 - setup `typescript` with `tsc --init`
 - add `dev` script to `package.json`:
 
