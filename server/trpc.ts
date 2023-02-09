@@ -23,8 +23,15 @@ const isAdminMiddleware = t.middleware(({ ctx, next }) => {
     throw new TRPCError({ code: 'UNAUTHORIZED' })
   }
 
-  // continue to the next middleware (assign the admin user to the context)
-  return next({ ctx: { user: { id: 1 } } })
+  return next({
+    // * you can modify the context here
+    ctx: {
+      user: {
+        // * pass the user id to the context
+        id: '123', // ! hard coded for now
+      },
+    },
+  })
 })
 
 export const adminProcedure = t.procedure.use(isAdminMiddleware)
