@@ -44,6 +44,7 @@ export const userRouter = t.router({
     }),
 
   // * SETUP WEB SOCKET SUBSCRIPTIONS - listen for changes
+  // ? onUpdate function that can be called from the client
   onUpdate: t.procedure.subscription(() => {
     return observable<string>((emit) => {
       // * LISTEN FOR update EVENT

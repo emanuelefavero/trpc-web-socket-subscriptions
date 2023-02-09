@@ -1,6 +1,14 @@
 // IMPORT TRPC CLIENT
 // npm i @trpc/client
-import { createTRPCProxyClient, httpBatchLink, loggerLink } from '@trpc/client'
+import {
+  createTRPCProxyClient,
+  httpBatchLink,
+  loggerLink,
+
+  // * IMPORT WEB SOCKET CLIENT, WEB SOCKET LINK
+  createWSClient,
+  wsLink,
+} from '@trpc/client'
 // IMPORT TYPES we created in server/api.ts
 import { AppRouter } from '../../server/api'
 
@@ -13,44 +21,56 @@ const client = createTRPCProxyClient<AppRouter>({
     // loggerLink logs all http requests to the client console (useful for debugging)
     // loggerLink(),
 
-    // TIP: Nothing can come after httpBatchLink
-    httpBatchLink({
-      url: 'http://localhost:3000/trpc',
-
-      // Pass custom http headers
-      // headers: { Authorization: 'TOKEN' },
+    // * SETUP A WEB SOCKET CONNECTION
+    wsLink({
+      client: createWSClient({
+        // * put ws instead of http on the url
+        url: 'ws://localhost:3000/trpc',
+      }),
     }),
+
+    // TIP: Nothing can come after httpBatchLink
+    // httpBatchLink({
+    //   url: 'http://localhost:3000/trpc',
+
+    //   // Pass custom http headers
+    //   // headers: { Authorization: 'TOKEN' },
+    // }),
   ],
 })
 
 // Make requests to the server
 async function main() {
-  document.body.innerHTML = 'Check console for results' // !
-
-  // http://localhost:3000/trpc/sayHi
-  const result = await client.sayHi.query()
-  console.log(result)
-
-  const result2 = await client.users.get.query({ userId: '123 ' })
-  console.log(result2)
-
-  const result3 = await client.users.update.mutate({
-    userId: '123',
-    name: 'Jack',
+  // * CALL THE SUBSCRIPTION
+  // ? log the id to the console whenever the user is updated
+  client.users.onUpdate.subscribe(undefined, {
+    // ? <- undefined because we don't need to pass any data
+    onData: (id) => {
+      console.log('Updated', id)
+    },
   })
-  console.log(result3)
 
-  const result4 = await client.secretData.query()
-  console.log(result4)
-
+  // document.body.innerHTML = 'Check console for results' // !
+  // http://localhost:3000/trpc/sayHi
+  // const result = await client.sayHi.query()
+  // console.log(result)
+  // const result2 = await client.users.get.query({ userId: '123 ' })
+  // console.log(result2)
+  // const result3 = await client.users.update.mutate({
+  //   userId: '123',
+  //   name: 'Jack',
+  // })
+  // console.log(result3)
+  // const result4 = await client.secretData.query()
+  // console.log(result4)
   // http://localhost:3000/trpc/logToServer
-  await client.logToServer.mutate('hello from client') // check server console
+  // await client.logToServer.mutate('hello from client') // check server console
 }
 
 main()
 
 // --------------------------------------------
 
-// ? query vs mutation
-// * query: read-only
-// * mutation: changes data
+// query vs mutation
+// query: read-only
+// mutation: changes data
