@@ -44,7 +44,7 @@ Web Socket Subscriptions are a way to use Web Sockets to subscribe to data chang
 
 ## Installation
 
-> Note: The installation will be the same as my [trpc repo](https://github.com/emanuelefavero/trpc) apart from the `npm i ws` command which installs the WebSocket library
+> Note: The installation will be the same as my [trpc repo](https://github.com/emanuelefavero/trpc) apart from the `npm i ws` command which installs the WebSocket library on the server
 
 - clone repo and `cd` into it
 - `cd` into `server` and run `npm install`
