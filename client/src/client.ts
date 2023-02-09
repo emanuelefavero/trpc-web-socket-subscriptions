@@ -1,12 +1,12 @@
-// * IMPORT TRPC CLIENT
+// IMPORT TRPC CLIENT
 // npm i @trpc/client
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from '@trpc/client'
-// * IMPORT TYPES we created in server/api.ts
+// IMPORT TYPES we created in server/api.ts
 import { AppRouter } from '../../server/api'
 
 // --------------------------------------------
 
-// * Create a client
+// Create a client
 const client = createTRPCProxyClient<AppRouter>({
   // httpBatchLink batches multiple requests into one - useful for performance
   links: [
@@ -23,7 +23,7 @@ const client = createTRPCProxyClient<AppRouter>({
   ],
 })
 
-// * Make requests to the server
+// Make requests to the server
 async function main() {
   document.body.innerHTML = 'Check console for results' // !
 

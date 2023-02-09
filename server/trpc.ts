@@ -3,9 +3,9 @@ import { createContext } from './context'
 
 // --------------------------------------------
 
-// * Initialize TRPC
+// Initialize TRPC
 export const t = initTRPC
-  // * Pass the context
+  // Pass the context
   .context<inferAsyncReturnType<typeof createContext>>()
 
   .create()
